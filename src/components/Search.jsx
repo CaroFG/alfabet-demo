@@ -22,10 +22,11 @@ export default function Search({ language = 'en' }) {
   useEffect(() => {
     const fetchResults = async () => {
       try {
-        const response = await fetch('http://localhost:7700/multi-search', {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_MEILISEARCH_HOST}/multi-search`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${process.env.NEXT_PUBLIC_MEILISEARCH_API_KEY}`,
           },
           body: JSON.stringify({
             queries: [
