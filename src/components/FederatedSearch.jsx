@@ -173,7 +173,7 @@ export default function FederatedSearch({ language = 'en' }) {
   };
 
   const placeholder = language === 'es' ? 
-    "Buscar en todo..." : 
+    "Buscar todo..." : 
     "Search everything...";
 
   return (
