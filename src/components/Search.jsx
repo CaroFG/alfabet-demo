@@ -123,18 +123,27 @@ export default function Search({ language = 'en' }) {
                     </>
                   )}
                 </div>
-                {event.main_markets && event.main_markets.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mt-1">
-                    {event.main_markets.map((marketId, idx) => (
-                      <span 
-                        key={idx} 
-                        className="inline-flex items-center rounded-full bg-muted px-2 py-1 text-xs font-medium"
-                      >
-                        {marketId}
-                      </span>
-                    ))}
+                {event.main_market_details && event.main_market_details.map((market, idx) => (
+                  <div key={idx} className="mt-2 bg-muted/30 rounded px-2 py-1.5">
+                    <div className="flex items-center gap-2 text-xs mb-1.5">
+                      <div className="font-medium">{market.market_name}</div>
+                      <div className="text-muted-foreground">ID: {market.market_type_id}</div>
+                    </div>
+                    <div className="grid grid-cols-3 gap-1.5">
+                      {market.selections.map((selection, selIdx) => (
+                        <div key={selIdx} className="bg-background/50 rounded px-2 py-1 text-center">
+                          <div className="text-xs font-medium truncate">{selection.name}</div>
+                          <div className="text-sm font-semibold text-primary">
+                            {selection.odds_formats.decimal}
+                          </div>
+                          <div className="text-[10px] text-muted-foreground">
+                            {selection.odds_formats.american}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                )}
+                ))}
               </div>
             ))}
             {results.events.length === 0 && (
